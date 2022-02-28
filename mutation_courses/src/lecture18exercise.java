@@ -43,6 +43,11 @@ class Instructor {
     // that have not yet been assigned to course(s)
     this.coursesAssigned = new Mt<Course>();
   }
+
+  void setCourses(IList<Course> courses) {
+    this.coursesAssigned = courses;
+  }
+
 }
 
 interface IList<T> {
@@ -72,10 +77,8 @@ class Examples {
   Student victoria, aiyan, liv;
 
   void initTestConditions() {
-    this.benLerner = new Instructor("Ben", "Lerner",
-      new Cons<Course>(this.fundies,
-        new Mt<Course>()));
-    this.virgil = new Instructor("Ben", "Lerner",
+    this.benLerner = new Instructor("Ben", "Lerner", null);
+    this.virgil = new Instructor("Virgil", "Pavlu",
       new Cons<Course>(this.discrete,
         new Cons<Course>(this.algo,
           new Mt<Course>())));
@@ -105,6 +108,10 @@ class Examples {
     this.fundies = new Course("Khoury", 2510, benLerner, group1);
     this.discrete = new Course("Khoury", 2800, virgil, group3);
     this.algo = new Course("Khoury", 3200, virgil, group2);
+
+    this.benLerner.setCourses(new Cons<Course>(this.fundies,
+      new Cons<Course>(this.algo,
+        new Mt<Course>())));
   }
 
 }
